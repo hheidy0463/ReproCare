@@ -18,6 +18,7 @@ class Visit(Base):
     provider_note = Column(Text, nullable=True)
     patient_summary = Column(Text, nullable=True)
     video_room_id = Column(String, nullable=True)
+    transcription_text = Column(Text, nullable=True)
     pharmacy_request = Column(JSON, nullable=True)
     audit_events = Column(JSON, default=list)
 

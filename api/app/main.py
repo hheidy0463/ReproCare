@@ -14,7 +14,7 @@ from app.schemas import (
     VisitResponse
 )
 from app.llm import chat
-from app.whereby import create_room
+from app.whereby import create_room, get_transcription
 
 app = FastAPI(title="ReproCare API")
 
@@ -116,9 +116,36 @@ def post_visit_explain(request: PostVisitRequest, db: Session = Depends(get_db))
     if not visit:
         raise HTTPException(status_code=404, detail="Visit not found")
     
+    # Try to get transcription from the meeting
+    transcription_text = None
+    if visit.video_room_id:
+        print(f"Attempting to fetch transcription for room: {visit.video_room_id}")
+        transcription_text = get_transcription(visit.video_room_id)
+        if transcription_text:
+            visit.transcription_text = transcription_text
+            print(f"✓ Successfully retrieved transcription ({len(transcription_text)} characters)")
+        else:
+            print(f"⚠ No transcription available - will use provider note instead")
+            print(f"   To enable transcriptions:")
+            print(f"   1. Go to Whereby room settings (https://subdomain.whereby.com/rooms)")
+            print(f"   2. Edit room template: {visit.video_room_id}")
+            print(f"   3. Enable 'Live transcription' or 'Transcription' feature")
+            print(f"   4. Save and use the room again")
+    
     system_prompt = """You write simple patient explanations. Reading level grade eight. Use short sentences."""
 
-    user_prompt = f"""Create a three part summary:
+    # Build the prompt with transcription if available, otherwise use provider note
+    if transcription_text:
+        user_prompt = f"""Create a three part summary based on the actual meeting transcription:
+one, what we talked about during the visit.
+two, what to do next with any dates mentioned.
+three, what to watch for and when to get help.
+
+Meeting transcription:
+{transcription_text[:4000]}"""  # Limit to avoid token limits
+        print("Using transcription for summary generation")
+    else:
+        user_prompt = f"""Create a three part summary:
 one, what we talked about.
 two, what to do next with any dates.
 three, what to watch for and when to get help.
@@ -128,6 +155,7 @@ Provider note:
 
 Intake structured JSON:
 {json.dumps(request.intake_structured)}"""
+        print("Using provider note and intake data (no transcription available)")
 
     response_text = chat(system_prompt, user_prompt)
     

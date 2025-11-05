@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=sqlite:///./mvp.sqlite
     volumes:
       - ./api:/app
       - ./api/data:/app/data
@@ -31,4 +29,3 @@ services:
       - /app/.next
     env_file:
       - .env.web
-

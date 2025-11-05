@@ -55,7 +55,8 @@ export default function VisitPage() {
         setStep('video')
         // If we already have a room URL, use it; otherwise create one
         if (data.video_room_id && !roomUrl) {
-          setRoomUrl(`https://whereby.com/${data.video_room_id}`)
+          // Construct the correct URL format for repro-care subdomain
+          setRoomUrl(`https://repro-care.whereby.com/${data.video_room_id}`)
         }
       } else if (data.status === 'summary_ready') {
         if (step === 'video') {
@@ -79,10 +80,15 @@ export default function VisitPage() {
         method: 'POST',
         body: JSON.stringify({ visit_id: visitId }),
       })
-      setRoomUrl(data.join_url)
+      // Use the join_url from API response, or construct from room_id if needed
+      const url = data.join_url || `https://repro-care.whereby.com/${data.room_id}`
+      setRoomUrl(url)
+      console.log('Room URL set to:', url)
     } catch (error) {
       console.error('Failed to create room:', error)
-      setRoomUrl('https://whereby.com/your-demo')
+      // Fallback to the actual room URL if we know the room ID
+      const fallbackUrl = `https://repro-care.whereby.com/8d9d69e5-e702-4767-89af-ff6430a8e265`
+      setRoomUrl(fallbackUrl)
     }
   }
 
@@ -205,8 +211,8 @@ export default function VisitPage() {
                 <div className="mb-6">
                   <iframe
                     src={roomUrl}
-                    className="w-full h-[600px] border border-gray-200 rounded-lg"
-                    allow="camera; microphone; fullscreen; speaker; display-capture"
+                    className="w-full h-[700px] border border-gray-200 rounded-lg"
+                    allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"
                   />
                 </div>
               )}

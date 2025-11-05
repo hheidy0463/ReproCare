@@ -46,12 +46,21 @@ python -m app.seed
 
 ## Environment Variables
 
-### Web (`.env.local` in `web/` directory)
-```
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+### Setup (First Time)
+
+**For Docker:**
+```bash
+# Create env files (they can be empty for stub mode)
+touch .env.api .env.web
+
+# Or copy and edit from examples (optional)
+# cp .env.api.example .env.api
+# cp .env.web.example .env.web
 ```
 
-### API (`.env` in `api/` directory)
+**For Local Development:**
+
+Create `api/.env`:
 ```
 DATABASE_URL=sqlite:///./mvp.sqlite
 LLM_BASE_URL=https://api.openai.com/v1/chat/completions
@@ -60,7 +69,12 @@ WHEREBY_API_KEY=your_key_here
 WHEREBY_ROOM_TEMPLATE_ID=your_template_id_here
 ```
 
-**Note**: If `LLM_API_KEY` or `WHEREBY_API_KEY` are not set, the app will use stub responses for demo purposes.
+Create `web/.env.local`:
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+```
+
+**Note**: If `LLM_API_KEY` or `WHEREBY_API_KEY` are not set (or env files are empty), the app will use stub responses for demo purposes.
 
 ## Demo Flow
 
@@ -72,9 +86,17 @@ WHEREBY_ROOM_TEMPLATE_ID=your_template_id_here
 
 ## Testing
 
-Run the seed script to test end-to-end:
+Initialize the database (run from the `api/` directory):
 ```bash
 cd api
+pip install -e .
 python -m app.seed
 ```
+
+Or if you prefer to run it from the root:
+```bash
+cd api && python -m app.seed
+```
+
+**Note**: The seed script creates the database tables. You only need to run it once.
 
