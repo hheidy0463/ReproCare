@@ -192,26 +192,32 @@ export default function VisitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/20 to-gray-50 py-12 px-4">
+      <div className="max-w-5xl mx-auto">
         <Stepper steps={STEPS} currentStep={getCurrentStepIndex()} />
 
-        <div className="bg-white rounded-lg shadow-sm p-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-10">
           {step === 'intake' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Intake</h2>
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-2 text-gray-900">Intake</h2>
+                <p className="text-gray-500">Please answer a few questions to help us understand your needs</p>
+              </div>
               <IntakeChat onComplete={handleIntakeComplete} />
             </div>
           )}
 
           {step === 'video' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Video visit</h2>
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-2 text-gray-900">Video visit</h2>
+                <p className="text-gray-500">Join your provider for a consultation</p>
+              </div>
               {roomUrl && (
-                <div className="mb-6">
+                <div className="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-200">
                   <iframe
                     src={roomUrl}
-                    className="w-full h-[700px] border border-gray-200 rounded-lg"
+                    className="w-full h-[700px]"
                     allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"
                   />
                 </div>
@@ -226,14 +232,17 @@ export default function VisitPage() {
 
           {step === 'postvisit' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Visit summary</h2>
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-2 text-gray-900">Visit summary</h2>
+                <p className="text-gray-500">Here's what we discussed during your visit</p>
+              </div>
               {postVisitSummary && (
                 <PostVisitCards
                   summary={postVisitSummary}
                   plainText={plainText || visit?.patient_summary}
                 />
               )}
-              <div className="mt-6 flex justify-center">
+              <div className="mt-8 flex justify-center">
                 <Button onClick={() => setStep('pharmacy')}>
                   Continue to pharmacy
                 </Button>
@@ -243,45 +252,50 @@ export default function VisitPage() {
 
           {step === 'pharmacy' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Pharmacy</h2>
-              <form onSubmit={handlePharmacyOrder} className="space-y-4 max-w-md">
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-2 text-gray-900">Pharmacy</h2>
+                <p className="text-gray-500">Complete your order details</p>
+              </div>
+              <form onSubmit={handlePharmacyOrder} className="space-y-6 max-w-lg">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Name
                   </label>
                   <input
                     type="text"
                     name="name"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm"
+                    placeholder="Enter your full name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Address
                   </label>
                   <input
                     type="text"
                     name="address"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm"
+                    placeholder="Enter your address"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Payment plan
                   </label>
                   <select
                     name="plan"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm"
                   >
                     <option value="cash">Cash</option>
                     <option value="insurance">Insurance</option>
                   </select>
                 </div>
                 <div className="pt-4">
-                  <Button type="submit">
+                  <Button type="submit" className="w-full">
                     Place order
                   </Button>
                 </div>
@@ -290,15 +304,20 @@ export default function VisitPage() {
           )}
 
           {step === 'success' && (
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900">Order placed</h2>
-              <p className="text-gray-700 mb-6">
+            <div className="text-center py-8">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold mb-3 text-gray-900">Order placed</h2>
+              <p className="text-gray-600 mb-8 text-lg">
                 Your order has been created successfully.
               </p>
               {orderId && (
-                <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                  <p className="text-sm text-gray-600">Order ID</p>
-                  <p className="text-lg font-mono text-gray-900">{orderId}</p>
+                <div className="bg-gradient-to-br from-blue-50 to-blue-50/50 p-6 rounded-xl mb-8 max-w-md mx-auto border border-blue-100 shadow-sm">
+                  <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Order ID</p>
+                  <p className="text-xl font-mono font-bold text-gray-900">{orderId}</p>
                 </div>
               )}
               <Button onClick={() => router.push('/')}>

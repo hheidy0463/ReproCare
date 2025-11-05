@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
 @media print {
   body {
     @apply bg-white;

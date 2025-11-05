@@ -40,13 +40,16 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
-          Birth control visit
-        </h1>
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-10">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold mb-3 text-gray-900 tracking-tight">
+            Birth control visit
+          </h1>
+          <div className="w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
+        </div>
         
-        <p className="text-sm text-gray-600 mb-6 text-center">
+        <p className="text-sm text-gray-500 mb-8 text-center leading-relaxed">
           By continuing you allow us to process your answers. This is a demo.
         </p>
 
