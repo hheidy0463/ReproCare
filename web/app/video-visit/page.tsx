@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Shield, Video, Phone } from "lucide-react"
@@ -23,7 +23,7 @@ async function fetchJSON(path: string, options?: RequestInit) {
   return response.json()
 }
 
-export default function VideoVisitPage() {
+function VideoVisitPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [visitId, setVisitId] = useState<string | null>(null)
@@ -304,5 +304,35 @@ export default function VideoVisitPage() {
         </div>
       </main>
     </div>
+  )
+}
+
+export default function VideoVisitPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex flex-col">
+          <header className="border-b border-border bg-card animate-slide-down">
+            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-2">
+                <Shield className="h-6 w-6 text-primary" />
+                <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
+              </Link>
+            </div>
+          </header>
+          <main className="flex-1 flex items-center justify-center p-4">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6 animate-gentle-pulse">
+                <Video className="h-8 w-8 text-primary" />
+              </div>
+              <h1 className="font-serif text-2xl font-bold text-foreground mb-3">Loading...</h1>
+              <p className="text-muted-foreground">Setting up your video consultation</p>
+            </div>
+          </main>
+        </div>
+      }
+    >
+      <VideoVisitPageContent />
+    </Suspense>
   )
 }
