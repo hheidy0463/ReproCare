@@ -247,4 +247,3 @@ def create_visit(db: Session = Depends(get_db)):
     db.commit()
     
     return {"visit_id": visit.id}
-

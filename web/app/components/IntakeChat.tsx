@@ -144,4 +144,3 @@ export default function IntakeChat({ onComplete }: IntakeChatProps) {
     </div>
   )
 }
-

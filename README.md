@@ -13,9 +13,9 @@ A demo application for a single visit flow for college age patients seeking birt
 
 ### With Docker
 
-```bash
+\`\`\`bash
 docker-compose up --build
-```
+\`\`\`
 
 Access:
 - Web: http://localhost:3000
@@ -24,55 +24,55 @@ Access:
 ### Local Development
 
 **Backend:**
-```bash
+\`\`\`bash
 cd api
 pip install -e .
 uvicorn app.main:app --reload --port 8000
-```
+\`\`\`
 
 **Frontend:**
-```bash
+\`\`\`bash
 cd web
 npm install
 npm run dev
-```
+\`\`\`
 
 **First time setup:**
-```bash
+\`\`\`bash
 # Initialize database
 cd api
 python -m app.seed
-```
+\`\`\`
 
 ## Environment Variables
 
 ### Setup (First Time)
 
 **For Docker:**
-```bash
+\`\`\`bash
 # Create env files (they can be empty for stub mode)
 touch .env.api .env.web
 
 # Or copy and edit from examples (optional)
 # cp .env.api.example .env.api
 # cp .env.web.example .env.web
-```
+\`\`\`
 
 **For Local Development:**
 
 Create `api/.env`:
-```
+\`\`\`
 DATABASE_URL=sqlite:///./mvp.sqlite
 LLM_BASE_URL=https://api.openai.com/v1/chat/completions
 LLM_API_KEY=your_key_here
 WHEREBY_API_KEY=your_key_here
 WHEREBY_ROOM_TEMPLATE_ID=your_template_id_here
-```
+\`\`\`
 
 Create `web/.env.local`:
-```
+\`\`\`
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
-```
+\`\`\`
 
 **Note**: If `LLM_API_KEY` or `WHEREBY_API_KEY` are not set (or env files are empty), the app will use stub responses for demo purposes.
 
@@ -87,16 +87,15 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 ## Testing
 
 Initialize the database (run from the `api/` directory):
-```bash
+\`\`\`bash
 cd api
 pip install -e .
 python -m app.seed
-```
+\`\`\`
 
 Or if you prefer to run it from the root:
-```bash
+\`\`\`bash
 cd api && python -m app.seed
-```
+\`\`\`
 
 **Note**: The seed script creates the database tables. You only need to run it once.
-

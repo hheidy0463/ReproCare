@@ -74,4 +74,3 @@ class VisitResponse(BaseModel):
     video_room_id: Optional[str] = None
     pharmacy_request: Optional[Dict[str, Any]] = None
     audit_events: Optional[List[str]] = None
-

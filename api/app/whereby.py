@@ -237,4 +237,3 @@ def get_transcription(room_name: str) -> Optional[str]:
     except Exception as e:
         print(f"ERROR fetching transcription: {e}")
         return None
-

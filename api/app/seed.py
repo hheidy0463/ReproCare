@@ -17,4 +17,3 @@ if __name__ == "__main__":
     print("- Join video visit (demo room if no Whereby key)")
     print("- End visit to see AI summary")
     print("- Complete pharmacy order")
-

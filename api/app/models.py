@@ -21,4 +21,3 @@ class Visit(Base):
     transcription_text = Column(Text, nullable=True)
     pharmacy_request = Column(JSON, nullable=True)
     audit_events = Column(JSON, default=list)
-

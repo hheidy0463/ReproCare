@@ -95,4 +95,3 @@ def _get_stub_response(system_prompt: str, user_prompt: str) -> str:
 }'''
     
     return "{}"
-

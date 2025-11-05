@@ -47,4 +47,3 @@ echo ""
 echo "To start the application:"
 echo "  Docker: docker-compose up --build"
 echo "  Local:  See README.md for instructions"
-
