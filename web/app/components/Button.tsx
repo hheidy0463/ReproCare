@@ -4,6 +4,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary'
   disabled?: boolean
   className?: string
+  type?: 'button' | 'submit' | 'reset'  // Add this line
 }
 
 export default function Button({
@@ -12,6 +13,7 @@ export default function Button({
   variant = 'primary',
   disabled = false,
   className = '',
+  type = 'button',  // Add this line with default
 }: ButtonProps) {
   const baseClasses = 'px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
   
@@ -21,6 +23,7 @@ export default function Button({
   
   return (
     <button
+      type={type}  // Add this line
       onClick={onClick}
       disabled={disabled}
       className={`${baseClasses} ${variantClasses} ${className}`}
@@ -29,4 +32,3 @@ export default function Button({
     </button>
   )
 }
-
