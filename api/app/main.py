@@ -34,6 +34,31 @@ def root():
     return {"message": "ReproCare API"}
 
 
+@app.get("/debug/env")
+def debug_env():
+    """Debug endpoint to check if environment variables are loaded."""
+    import os
+    from app.whereby import WHEREBY_API_KEY, WHEREBY_ROOM_TEMPLATE_ID
+    from app.llm import LLM_API_KEY, LLM_BASE_URL
+    
+    return {
+        "from_os.getenv": {
+            "WHEREBY_API_KEY": "SET" if os.getenv("WHEREBY_API_KEY") else "NOT SET",
+            "WHEREBY_ROOM_TEMPLATE_ID": "SET" if os.getenv("WHEREBY_ROOM_TEMPLATE_ID") else "NOT SET",
+            "LLM_API_KEY": "SET" if os.getenv("LLM_API_KEY") else "NOT SET",
+            "LLM_BASE_URL": os.getenv("LLM_BASE_URL", "NOT SET"),
+        },
+        "from_module_vars": {
+            "WHEREBY_API_KEY": "SET" if WHEREBY_API_KEY else "NOT SET",
+            "WHEREBY_ROOM_TEMPLATE_ID": "SET" if WHEREBY_ROOM_TEMPLATE_ID else "NOT SET",
+            "LLM_API_KEY": "SET" if LLM_API_KEY else "NOT SET",
+            "LLM_BASE_URL": LLM_BASE_URL,
+        },
+        "whereby_api_key_length": len(WHEREBY_API_KEY) if WHEREBY_API_KEY else 0,
+        "llm_api_key_length": len(LLM_API_KEY) if LLM_API_KEY else 0,
+    }
+
+
 @app.post("/intake_to_json", response_model=IntakeResponse)
 def intake_to_json(request: IntakeRequest, db: Session = Depends(get_db)):
     visit = db.query(Visit).filter(Visit.id == request.visit_id).first()
