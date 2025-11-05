@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+  body {
+    @apply bg-white;
+  }
+  .no-print {
+    display: none;
+  }
+}
+
