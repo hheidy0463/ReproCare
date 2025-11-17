@@ -76,6 +76,17 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 
 **Note**: If `LLM_API_KEY` or `WHEREBY_API_KEY` are not set (or env files are empty), the app will use stub responses for demo purposes.
 
+### For Production (Vercel)
+
+**Set Environment Variables in Vercel:**
+
+1. Go to your Vercel project settings → Environment Variables
+2. Add `NEXT_PUBLIC_API_BASE_URL` with your deployed API URL:
+   - Example: `https://your-api.railway.app` or `https://your-api.render.com`
+   - Or if API is on a different domain: `https://api.yourdomain.com`
+
+**Note**: The API must be deployed separately (Railway, Render, Fly.io, etc.) and CORS must be configured to allow requests from your Vercel domain.
+
 ## Demo Flow
 
 1. Home → Start visit (creates visit ID)
