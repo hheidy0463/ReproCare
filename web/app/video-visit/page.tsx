@@ -7,10 +7,35 @@ import { Shield, Video, Phone } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000"
+// Use relative URLs for Vercel (works automatically), or absolute URL for local development
+const getApiBase = () => {
+  // If NEXT_PUBLIC_API_BASE_URL is set and is an absolute URL, use it (for local dev with separate API)
+  const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  
+  if (envUrl && (envUrl.startsWith("http://") || envUrl.startsWith("https://"))) {
+    return envUrl.replace(/\/$/, "")
+  }
+  
+  // Otherwise use relative URLs (works on Vercel with Next.js API routes)
+  return ""
+}
+
+const API_BASE = getApiBase()
 
 async function fetchJSON(path: string, options?: RequestInit) {
-  const response = await fetch(`${API_BASE}${path}`, {
+  // Ensure path starts with /
+  let normalizedPath = path.startsWith("/") ? path : `/${path}`
+  
+  // If using relative URLs (Vercel), add /api prefix
+  if (!API_BASE && !normalizedPath.startsWith("/api")) {
+    normalizedPath = `/api${normalizedPath}`
+  }
+  
+  const url = `${API_BASE}${normalizedPath}`
+  
+  console.log("API Request:", url) // Debug log
+  
+  const response = await fetch(url, {
     ...options,
     headers: {
       "Content-Type": "application/json",

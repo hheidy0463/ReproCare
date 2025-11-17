@@ -78,14 +78,30 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 
 ### For Production (Vercel)
 
+**Option 1: Vercel Only (Recommended)**
+
+The app now includes Next.js API routes, so everything runs on Vercel! No separate API deployment needed.
+
 **Set Environment Variables in Vercel:**
 
 1. Go to your Vercel project settings → Environment Variables
-2. Add `NEXT_PUBLIC_API_BASE_URL` with your deployed API URL:
-   - Example: `https://your-api.railway.app` or `https://your-api.render.com`
-   - Or if API is on a different domain: `https://api.yourdomain.com`
+2. Add these variables (same as your `.env.api` file):
+   - `LLM_API_KEY` - Your OpenAI API key
+   - `LLM_BASE_URL` - (Optional) Defaults to OpenAI
+   - `WHEREBY_API_KEY` - Your Whereby API key
+   - `WHEREBY_ROOM_TEMPLATE_ID` - Your Whereby room template ID
+   - `DATABASE_URL` - (Optional) For Vercel Postgres, or leave empty for in-memory store
 
-**Note**: The API must be deployed separately (Railway, Render, Fly.io, etc.) and CORS must be configured to allow requests from your Vercel domain.
+**Note**: 
+- `NEXT_PUBLIC_API_BASE_URL` is NOT needed - the app uses relative URLs automatically
+- Data is stored in-memory by default (resets on redeploy). For persistence, use Vercel Postgres.
+
+**Option 2: Separate API Deployment**
+
+If you prefer to keep the FastAPI backend separate:
+1. Deploy API to Railway, Render, Fly.io, etc.
+2. Set `NEXT_PUBLIC_API_BASE_URL` in Vercel to your deployed API URL
+3. Ensure CORS is configured on your API
 
 ## Demo Flow
 
