@@ -3,10 +3,10 @@ import { visitsStore } from "@/lib/api-helpers"
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { visitId: string } }
+  { params }: { params: Promise<{ visitId: string }> }
 ) {
   try {
-    const visitId = params.visitId
+    const { visitId } = await params
 
     if (!visitId) {
       return NextResponse.json({ error: "visit_id is required" }, { status: 400 })
