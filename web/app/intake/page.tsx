@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Logo } from "@/components/Logo"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, MessageCircle, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -38,35 +38,17 @@ const questions = [
   },
   {
     id: 4,
-    question: "Any current medications?",
-    type: "text" as const,
-    field: "medications",
-  },
-  {
-    id: 5,
-    question: "Any allergies?",
-    type: "text" as const,
-    field: "allergies",
-  },
-  {
-    id: 6,
     question: "Do you smoke?",
     type: "options" as const,
     options: ["Yes", "No"],
     field: "smoking",
   },
   {
-    id: 7,
+    id: 5,
     question: "What matters most to you?",
     type: "options" as const,
     options: ["Effectiveness", "Convenience", "Minimal side effects", "Hormone-free"],
     field: "priority",
-  },
-  {
-    id: 8,
-    question: "Anything else your provider should know?",
-    type: "text" as const,
-    field: "additionalInfo",
   },
 ]
 
@@ -163,6 +145,22 @@ export default function IntakePage() {
 
       {/* Chat Container */}
       <main className="flex-1 container mx-auto px-4 py-8 max-w-3xl">
+        {/* Welcome Card */}
+        {currentQuestion === 0 && (
+          <div className="mb-8 animate-slide-up">
+            <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-2 border-primary/20">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h2 className="font-serif text-lg font-semibold text-foreground">Quick Health Check</h2>
+                  <p className="text-xs text-muted-foreground">Just 5 quick questions</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
         <div className="space-y-4 mb-24">
           {messages.map((message) => (
             <div
@@ -170,12 +168,20 @@ export default function IntakePage() {
               className={`flex ${message.type === "user" ? "justify-end" : "justify-start"} animate-slide-up`}
             >
               <div
-                className={`max-w-[80%] rounded-2xl px-6 py-4 transition-smooth ${
+                className={`max-w-[80%] rounded-2xl px-6 py-4 transition-smooth shadow-sm ${
                   message.type === "user"
                     ? "bg-primary text-primary-foreground"
-                    : "bg-card border border-border text-foreground"
+                    : "bg-card border-2 border-border text-foreground"
                 }`}
               >
+                {message.type === "bot" && (
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                      <MessageCircle className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium">ReproCare</span>
+                  </div>
+                )}
                 <p className="leading-relaxed">{message.content}</p>
 
                 {message.options && (
