@@ -1,18 +1,26 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Shield, Download, FileText, CheckCircle2, ArrowRight, Calendar, Pill } from "lucide-react"
+import { Logo } from "@/components/Logo"
+import { Download, FileText, CheckCircle2, ArrowRight, Calendar, Pill } from "lucide-react"
 import Link from "next/link"
 
 export default function SummaryPage() {
+  const [visitDate, setVisitDate] = useState<string>("")
+
+  useEffect(() => {
+    setVisitDate(
+      new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+    )
+  }, [])
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="border-b border-border bg-card animate-slide-down">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
-          </Link>
+          <Logo />
           <Button variant="outline" size="sm">
             <Download className="h-4 w-4 mr-2" />
             Download Summary
@@ -31,13 +39,12 @@ export default function SummaryPage() {
               Consultation Complete
             </h1>
             <p className="text-muted-foreground leading-relaxed animate-slide-up animate-delay-200">
-              Your visit with Dr. Sarah Mitchell on{" "}
-              {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              Your visit with Dr. Sarah Mitchell on {visitDate || "Loading..."}
             </p>
           </div>
 
           {/* Provider Notes */}
-          <Card className="p-6 md:p-8 mb-6 border-border animate-slide-up animate-delay-100 transition-smooth hover:shadow-md">
+          <Card className="p-6 md:p-8 mb-6 border-border bg-gradient-to-br from-card to-card/50 animate-slide-up animate-delay-100 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <div className="flex items-start gap-3 mb-4">
               <FileText className="h-5 w-5 text-primary mt-1" />
               <div>
@@ -47,22 +54,20 @@ export default function SummaryPage() {
             </div>
             <div className="space-y-4 text-foreground leading-relaxed">
               <p>
-                Thank you for your consultation today. Based on our discussion of your medical history, lifestyle, and
-                preferences, I'm recommending the following birth control option:
+                Based on our discussion, I'm recommending:
               </p>
-              <div className="bg-muted rounded-lg p-4">
-                <h3 className="font-semibold mb-2">Recommended Option</h3>
-                <p className="text-sm">Combined oral contraceptive pill (low-dose estrogen/progestin combination)</p>
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-4 border border-primary/20">
+                <h3 className="font-semibold mb-2">Recommended</h3>
+                <p className="text-sm">Low-dose combination pill</p>
               </div>
-              <p>
-                This option aligns well with your priorities for effectiveness and convenience. The low-dose formulation
-                should minimize potential side effects while providing reliable contraception.
+              <p className="text-sm">
+                This option fits your needs for effectiveness and convenience.
               </p>
             </div>
           </Card>
 
           {/* Prescription Details */}
-          <Card className="p-6 md:p-8 mb-6 border-border animate-slide-up animate-delay-200 transition-smooth hover:shadow-md">
+          <Card className="p-6 md:p-8 mb-6 border-border bg-gradient-to-br from-card to-card/50 animate-slide-up animate-delay-200 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <div className="flex items-start gap-3 mb-4">
               <Pill className="h-5 w-5 text-primary mt-1" />
               <h2 className="font-serif text-xl font-semibold text-foreground">Prescription Details</h2>
@@ -90,52 +95,51 @@ export default function SummaryPage() {
           </Card>
 
           {/* Instructions */}
-          <Card className="p-6 md:p-8 mb-6 border-border animate-slide-up animate-delay-300 transition-smooth hover:shadow-md">
+          <Card className="p-6 md:p-8 mb-6 border-border bg-gradient-to-br from-card to-card/50 animate-slide-up animate-delay-300 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <h2 className="font-serif text-xl font-semibold text-foreground mb-4">Important Instructions</h2>
             <ul className="space-y-3 text-foreground">
               <li className="flex gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="leading-relaxed">Take one tablet at the same time each day, preferably with food</span>
+                <span className="leading-relaxed text-sm">Take one tablet daily at the same time</span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="leading-relaxed">Use backup contraception for the first 7 days when starting</span>
+                <span className="leading-relaxed text-sm">Use backup for first 7 days</span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="leading-relaxed">
-                  If you miss a pill, take it as soon as you remember and continue as normal
+                <span className="leading-relaxed text-sm">
+                  If you miss a pill, take it ASAP and continue
                 </span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="leading-relaxed">
-                  Contact us immediately if you experience severe headaches, chest pain, or vision changes
+                <span className="leading-relaxed text-sm">
+                  Contact us if you have severe headaches, chest pain, or vision changes
                 </span>
               </li>
             </ul>
           </Card>
 
           {/* Follow-up */}
-          <Card className="p-6 md:p-8 mb-8 border-border animate-slide-up animate-delay-400 transition-smooth hover:shadow-md">
+          <Card className="p-6 md:p-8 mb-8 border-border bg-gradient-to-br from-card to-card/50 animate-slide-up animate-delay-400 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
             <div className="flex items-start gap-3 mb-4">
               <Calendar className="h-5 w-5 text-primary mt-1" />
               <h2 className="font-serif text-xl font-semibold text-foreground">Follow-Up Care</h2>
             </div>
-            <p className="text-foreground leading-relaxed mb-4">
-              We recommend a follow-up consultation in 3 months to discuss how you're adjusting to the medication and
-              address any concerns. You can schedule this through your patient portal or contact us directly.
+            <p className="text-foreground leading-relaxed mb-4 text-sm">
+              Follow-up in 3 months. Schedule through your portal or contact us.
             </p>
             <p className="text-sm text-muted-foreground">
-              If you have any questions or concerns before then, please don't hesitate to reach out to our care team.
+              Questions? Reach out anytime.
             </p>
           </Card>
 
           {/* Next Steps */}
           <div className="bg-primary text-primary-foreground rounded-xl p-8 text-center animate-scale-in">
-            <h2 className="font-serif text-2xl font-bold mb-3">Next Step: Select Your Pharmacy</h2>
-            <p className="mb-6 opacity-90 leading-relaxed">
-              Choose where you'd like your prescription sent for convenient pickup or delivery
+            <h2 className="font-serif text-2xl font-bold mb-3">Next: Choose Your Pharmacy</h2>
+            <p className="mb-6 opacity-90 leading-relaxed text-sm">
+              Pick where to send your prescription
             </p>
             <Button asChild size="lg" variant="secondary" className="transition-smooth hover:scale-105">
               <Link href="/pharmacy">

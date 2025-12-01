@@ -1,73 +1,86 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Shield, Lock, Clock, CheckCircle2, Video, FileText } from "lucide-react"
+import { Logo } from "@/components/Logo"
+import { Lock, Clock, CheckCircle2, Video, FileText, Sparkles, Heart, Shield, ArrowRight } from "lucide-react"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
       <header className="border-b border-border bg-card animate-slide-down">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <Logo />
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              <span>Part of Included Health</span>
+            </div>
+            <nav className="hidden md:flex items-center gap-6">
+              <Link
+                href="#how-it-works"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                How It Works
+              </Link>
+              <Button variant="outline" size="sm">
+                Sign In
+              </Button>
+            </nav>
           </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              How It Works
-            </Link>
-            <Link href="#benefits" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Benefits
-            </Link>
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-          </nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance animate-slide-up">
-              Discreet Birth Control Consultations with Licensed Providers
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto animate-slide-up animate-delay-100">
-              Professional, confidential care from the comfort of your home. Get expert guidance and prescriptions
-              delivered directly to you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up animate-delay-200">
-              <Button asChild size="lg" className="text-base transition-smooth hover:scale-105">
-                <Link href="/intake">Start Consultation</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="text-base bg-transparent transition-smooth hover:scale-105"
-              >
-                <Link href="#how-it-works">Learn More</Link>
-              </Button>
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+            {/* Left: Text Content */}
+            <div className="text-center md:text-left animate-slide-up">
+              <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground mb-4 text-balance">
+                Birth Control Care.<br />Simple. Private. Fast.
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed animate-slide-up animate-delay-100">
+                Expert care from home. Licensed providers. Prescriptions delivered.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-slide-up animate-delay-200">
+                <Button asChild size="lg" className="text-base transition-smooth hover:scale-105 shadow-lg">
+                  <Link href="/intake">
+                    Start Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Visual Trust Cards */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-12 animate-fade-in animate-delay-300">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm">
+                  <Shield className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">100% Private</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm">
+                  <CheckCircle2 className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Licensed Providers</span>
+                </div>
+              </div>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-sm text-muted-foreground animate-fade-in animate-delay-300">
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-accent" />
-                <span>HIPAA Compliant</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4 text-accent" />
-                <span>100% Confidential</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-accent" />
-                <span>Licensed Providers</span>
+            {/* Right: Hero Image/Illustration */}
+            <div className="relative animate-slide-up animate-delay-200">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="w-full h-full rounded-3xl overflow-hidden relative">
+                  <Image
+                    src="/hero-illustration.png"
+                    alt="ReproCare - Birth Control Care"
+                    fill
+                    className="object-contain"
+                    priority
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 400px"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -75,182 +88,156 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-20 bg-card">
+      <section id="how-it-works" className="py-20 bg-gradient-to-b from-background to-card">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16 animate-slide-up">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">How It Works</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Simple, secure, and designed with your privacy in mind
-            </p>
+          <div className="max-w-3xl mx-auto text-center mb-12 animate-slide-up">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">How It Works</h2>
+            <p className="text-muted-foreground text-sm">Three simple steps</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-8 text-center border-border animate-slide-up animate-delay-100 transition-smooth hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <FileText className="h-6 w-6 text-primary" />
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto relative">
+            {/* Connection Line (desktop only) */}
+            <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 -z-10" />
+            
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group">
+              <div className="relative mb-6">
+                {/* Optional: Add illustration image here */}
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
+                  {/* <Image src="/step-1-intake.png" alt="Quick Intake" width={80} height={80} className="object-contain" /> */}
+                  <FileText className="h-10 w-10 text-primary" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-lg">
+                  1
+                </div>
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-3">1. Complete Intake</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Answer a few questions about your health history and preferences in our secure chat interface.
+              <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Quick Intake</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">
+                5 minutes. A few questions.
               </p>
             </Card>
 
-            <Card className="p-8 text-center border-border animate-slide-up animate-delay-200 transition-smooth hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Video className="h-6 w-6 text-primary" />
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group relative md:-mt-4">
+              <div className="relative mb-6">
+                {/* Optional: Add illustration image here */}
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
+                  {/* <Image src="/step-2-video.png" alt="Video Visit" width={80} height={80} className="object-contain" /> */}
+                  <Video className="h-10 w-10 text-primary" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-lg">
+                  2
+                </div>
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-3">2. Video Consultation</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Meet with a licensed healthcare provider via secure video to discuss your options.
+              <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Video Visit</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">
+                Meet your provider. Get guidance.
               </p>
             </Card>
 
-            <Card className="p-8 text-center border-border animate-slide-up animate-delay-300 transition-smooth hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-6 w-6 text-primary" />
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group">
+              <div className="relative mb-6">
+                {/* Optional: Add illustration image here */}
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
+                  {/* <Image src="/step-3-prescription.png" alt="Get Prescription" width={80} height={80} className="object-contain" /> */}
+                  <Heart className="h-10 w-10 text-primary" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-lg">
+                  3
+                </div>
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-3">3. Get Your Prescription</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Receive your prescription and have it delivered discreetly to your preferred pharmacy.
+              <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Get Prescription</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">
+                Sent to pharmacy. Same day.
               </p>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section id="benefits" className="py-20">
+      {/* Benefits - Visual Cards */}
+      <section id="benefits" className="py-20 bg-card">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16 animate-slide-up">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">Why Choose Us</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Professional healthcare that respects your privacy and time
-            </p>
+          <div className="max-w-3xl mx-auto text-center mb-12 animate-slide-up">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">Why ReproCare</h2>
+            <p className="text-muted-foreground text-sm">Built for your privacy and convenience</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {[
               {
-                title: "Complete Privacy",
-                description: "Your consultation and medical information are fully confidential and HIPAA protected.",
+                title: "100% Private",
+                description: "HIPAA protected",
+                icon: Lock,
               },
               {
                 title: "Licensed Providers",
-                description: "Consult with experienced, board-certified healthcare professionals.",
+                description: "Board-certified experts",
+                icon: CheckCircle2,
               },
               {
-                title: "Convenient & Fast",
-                description: "Complete your consultation from anywhere, with prescriptions available same-day.",
+                title: "Fast & Convenient",
+                description: "From home, same-day",
+                icon: Clock,
               },
               {
                 title: "Personalized Care",
-                description: "Get recommendations tailored to your health history, lifestyle, and preferences.",
+                description: "Tailored to you",
+                icon: Heart,
               },
-            ].map((benefit, index) => (
-              <Card
-                key={index}
-                className={`p-6 border-border animate-slide-up animate-delay-${(index + 1) * 100} transition-smooth hover:shadow-md hover:border-primary/30`}
-              >
-                <h3 className="font-serif text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
-              </Card>
-            ))}
+            ].map((benefit, index) => {
+              const Icon = benefit.icon
+              return (
+                <Card
+                  key={index}
+                  className={`p-6 border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-${(index + 1) * 100} transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:scale-[1.02] hover:-translate-y-1`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-border flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-7 w-7 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-serif text-lg font-semibold text-foreground mb-1">{benefit.title}</h3>
+                      <p className="text-muted-foreground text-xs">{benefit.description}</p>
+                    </div>
+                  </div>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground animate-scale-in">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Begin your confidential consultation today and take control of your reproductive health.
-          </p>
-          <Button asChild size="lg" variant="secondary" className="text-base transition-smooth hover:scale-105">
-            <Link href="/intake">Start Your Consultation</Link>
-          </Button>
+      <section className="py-20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/20 blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-white/20 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-3">Ready to Start?</h2>
+            <p className="text-lg mb-8 opacity-95">
+              Get your birth control consultation today.
+            </p>
+            <Button asChild size="lg" variant="secondary" className="text-base transition-smooth hover:scale-105 shadow-xl">
+              <Link href="/intake">
+                Start Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Shield className="h-5 w-5 text-primary" />
-                <span className="font-serif text-lg font-semibold text-foreground">ReproCare</span>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Professional, confidential birth control consultations.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-3">Services</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href="/intake" className="hover:text-foreground transition-colors">
-                    Consultations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Prescriptions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Follow-up Care
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-3">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Our Providers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-3">Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
-                    HIPAA Notice
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>
-              &copy; 2025 ReproCare. All rights reserved. This service is not a substitute for emergency medical care.
-            </p>
-          </div>
+      <footer className="border-t border-border bg-card py-8">
+        <div className="container mx-auto px-4 text-center">
+          <Logo className="justify-center mb-4" />
+          <p className="text-sm text-muted-foreground mb-2">
+            Part of Included Health
+          </p>
+          <p className="text-xs text-muted-foreground">
+            &copy; 2025 ReproCare. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

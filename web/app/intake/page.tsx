@@ -4,7 +4,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { Shield, ArrowRight, Check } from "lucide-react"
+import { Logo } from "@/components/Logo"
+import { ArrowRight, Check } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -18,8 +19,7 @@ type Message = {
 const questions = [
   {
     id: 1,
-    question:
-      "Hi! I'm here to help you with your birth control consultation. Let's start with your name. What should I call you?",
+    question: "Hi! What's your name?",
     type: "text" as const,
     field: "name",
   },
@@ -38,13 +38,13 @@ const questions = [
   },
   {
     id: 4,
-    question: "Are you currently taking any medications?",
+    question: "Any current medications?",
     type: "text" as const,
     field: "medications",
   },
   {
     id: 5,
-    question: "Do you have any known allergies?",
+    question: "Any allergies?",
     type: "text" as const,
     field: "allergies",
   },
@@ -57,14 +57,14 @@ const questions = [
   },
   {
     id: 7,
-    question: "What's most important to you in a birth control method?",
+    question: "What matters most to you?",
     type: "options" as const,
-    options: ["Effectiveness", "Convenience", "Minimal side effects", "Hormone-free options"],
+    options: ["Effectiveness", "Convenience", "Minimal side effects", "Hormone-free"],
     field: "priority",
   },
   {
     id: 8,
-    question: "Is there anything else you'd like your provider to know?",
+    question: "Anything else your provider should know?",
     type: "text" as const,
     field: "additionalInfo",
   },
@@ -125,7 +125,7 @@ export default function IntakePage() {
         const finalMessage: Message = {
           id: messages.length + 1,
           type: "bot",
-          content: "Perfect! I have all the information I need. You're ready to meet with your provider.",
+          content: "Perfect! Ready to meet your provider.",
         }
         setMessages((prev) => [...prev, finalMessage])
         setIsComplete(true)
@@ -146,16 +146,16 @@ export default function IntakePage() {
       {/* Header */}
       <header className="border-b border-border bg-card sticky top-0 z-10 animate-slide-down">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
-          </Link>
+          <Logo />
           <div className="flex items-center gap-4">
             <div className="hidden sm:block text-sm text-muted-foreground">
               Question {Math.min(currentQuestion + 1, questions.length)} of {questions.length}
             </div>
-            <div className="w-32 h-2 bg-secondary rounded-full overflow-hidden">
-              <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
+            <div className="w-32 md:w-40 h-2.5 bg-secondary rounded-full overflow-hidden shadow-inner">
+              <div 
+                className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-500 rounded-full shadow-sm" 
+                style={{ width: `${progress}%` }} 
+              />
             </div>
           </div>
         </div>
@@ -199,15 +199,15 @@ export default function IntakePage() {
 
           {isComplete && (
             <div className="flex justify-center pt-4 animate-scale-in">
-              <Card className="p-6 text-center max-w-md border-border">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Check className="h-6 w-6 text-primary" />
+              <Card className="p-8 text-center max-w-md border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl">
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-6 animate-scale-in">
+                  <Check className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-semibold text-foreground mb-2">Intake Complete</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Your information has been securely saved. Ready to connect with your provider?
+                <h3 className="font-serif text-2xl font-semibold text-foreground mb-3">All Set!</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed text-sm">
+                  Ready to meet your provider?
                 </p>
-                <Button onClick={() => router.push("/video-visit")} className="w-full" size="lg">
+                <Button onClick={() => router.push("/video-visit")} className="w-full shadow-lg" size="lg">
                   Continue to Video Visit
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Shield, Video, Phone } from "lucide-react"
+import { Logo } from "@/components/Logo"
+import { Video, Phone } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -266,10 +267,7 @@ function VideoVisitPageContent() {
       <div className="min-h-screen flex flex-col">
         <header className="border-b border-border bg-card animate-slide-down">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Shield className="h-6 w-6 text-primary" />
-              <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
-            </Link>
+            <Logo />
           </div>
         </header>
         <main className="flex-1 flex items-center justify-center p-4">
@@ -290,10 +288,7 @@ function VideoVisitPageContent() {
       {/* Minimal Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
-            <span className="font-serif text-lg font-semibold text-foreground">ReproCare</span>
-          </Link>
+          <Logo size="sm" />
           <Button
             variant="outline"
             size="sm"
@@ -339,10 +334,7 @@ export default function VideoVisitPage() {
         <div className="min-h-screen flex flex-col">
           <header className="border-b border-border bg-card animate-slide-down">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-2">
-                <Shield className="h-6 w-6 text-primary" />
-                <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
-              </Link>
+              <Logo />
             </div>
           </header>
           <main className="flex-1 flex items-center justify-center p-4">

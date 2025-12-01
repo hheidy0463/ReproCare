@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Shield, Search, MapPin, Package, CreditCard, ArrowRight } from "lucide-react"
+import { Logo } from "@/components/Logo"
+import { Search, MapPin, Package, CreditCard, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -54,10 +55,7 @@ export default function PharmacyPage() {
       {/* Header */}
       <header className="border-b border-border bg-card animate-slide-down">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="font-serif text-xl font-semibold text-foreground">ReproCare</span>
-          </Link>
+          <Logo />
           <div className="text-sm text-muted-foreground">Step 5 of 5</div>
         </div>
       </header>
