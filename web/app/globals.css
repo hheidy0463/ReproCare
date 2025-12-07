@@ -4,39 +4,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to Deep Navy + Soft Blush palette for private, discreet, trustworthy feel */
-  --background: oklch(0.98 0.005 240); /* Soft off-white with cool undertone */
-  --foreground: oklch(0.25 0.03 250); /* Deep navy text */
+  /* Pitch Deck Gradient Theme - #480931 (deep purple) to #6e7fa6 (blue-purple) */
+  --background: oklch(0.98 0.005 280); /* Soft off-white with purple undertone */
+  --foreground: oklch(0.22 0.05 330); /* Deep purple text matching #480931 */
   --card: oklch(1 0 0); /* Pure white cards */
-  --card-foreground: oklch(0.25 0.03 250);
+  --card-foreground: oklch(0.22 0.05 330);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.03 250);
-  --primary: oklch(0.32 0.08 250); /* Deep navy - trustworthy and professional */
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.93 0.02 20); /* Soft blush/peach */
-  --secondary-foreground: oklch(0.25 0.03 250);
-  --muted: oklch(0.95 0.01 240);
-  --muted-foreground: oklch(0.5 0.02 250);
-  --accent: oklch(0.75 0.08 15); /* Warm peach accent for approachability */
-  --accent-foreground: oklch(0.25 0.03 250);
+  --popover-foreground: oklch(0.22 0.05 330);
+  --primary: #480931; /* Deep purple from pitch deck */
+  --primary-foreground: oklch(0.99 0 0); /* White text on primary */
+  --secondary: #6e7fa6; /* Blue-purple from pitch deck */
+  --secondary-foreground: oklch(0.99 0 0); /* White text on secondary */
+  --muted: oklch(0.95 0.01 280);
+  --muted-foreground: oklch(0.5 0.02 280);
+  --accent: #6e7fa6; /* Use secondary color as accent */
+  --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.32 0.08 250);
+  --border: oklch(0.9 0.02 280);
+  --input: oklch(0.9 0.02 280);
+  --ring: #480931;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-3: #480931;
+  --chart-4: #6e7fa6;
+  --chart-5: oklch(0.65 0.1 270);
   --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.25 0.03 250);
-  --sidebar-primary: oklch(0.32 0.08 250);
+  --sidebar-foreground: oklch(0.22 0.05 330);
+  --sidebar-primary: #480931;
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.93 0.02 20);
-  --sidebar-accent-foreground: oklch(0.25 0.03 250);
-  --sidebar-border: oklch(0.9 0.01 240);
+  --sidebar-accent: #6e7fa6;
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.9 0.02 280);
   --sidebar-ring: oklch(0.708 0 0);
 }
 
@@ -219,5 +219,14 @@
 
   .transition-smooth {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Pitch Deck Gradient Background - Exact colors from pitch deck */
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #480931 0%, #6e7fa6 100%);
+  }
+
+  .bg-gradient-brand-horizontal {
+    background: linear-gradient(90deg, #480931 0%, #6e7fa6 100%);
   }
 }

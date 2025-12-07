@@ -33,20 +33,20 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-50" />
+      <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-brand-horizontal">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#480931]/30 via-transparent to-[#6e7fa6]/30" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
             {/* Left: Text Content */}
             <div className="text-center md:text-left animate-slide-up">
-              <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground mb-4 text-balance">
+              <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-4 text-balance drop-shadow-lg">
                 Birth Control Care.<br />Simple. Private. Fast.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed animate-slide-up animate-delay-100">
+              <p className="text-lg md:text-xl text-white/95 mb-8 leading-relaxed animate-slide-up animate-delay-100 drop-shadow-md">
                 Expert care from home. Licensed providers. Prescriptions delivered.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-slide-up animate-delay-200">
-                <Button asChild size="lg" className="text-base transition-smooth hover:scale-105 shadow-lg">
+                <Button asChild size="lg" variant="secondary" className="text-base transition-smooth hover:scale-105 shadow-xl bg-white text-primary hover:bg-white/90">
                   <Link href="/intake">
                     Start Now
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -56,12 +56,12 @@ export default function HomePage() {
 
               {/* Visual Trust Cards */}
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-12 animate-fade-in animate-delay-300">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm">
-                  <Shield className="h-4 w-4 text-primary" />
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg text-white">
+                  <Shield className="h-4 w-4" />
                   <span className="text-sm font-medium">100% Private</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg text-white">
+                  <CheckCircle2 className="h-4 w-4" />
                   <span className="text-sm font-medium">Licensed Providers</span>
                 </div>
               </div>
@@ -92,14 +92,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12 animate-slide-up">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">How It Works</h2>
-            <p className="text-muted-foreground text-sm">Three simple steps</p>
+            <p className="text-muted-foreground text-sm">Three simple steps to get the care you need</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto relative">
             {/* Connection Line (desktop only) */}
             <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 -z-10" />
             
-            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group">
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/10 animate-slide-up animate-delay-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/40 hover:scale-[1.02] group">
               <div className="relative mb-6">
                 {/* Optional: Add illustration image here */}
                 <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
@@ -112,11 +112,11 @@ export default function HomePage() {
               </div>
               <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Quick Intake</h3>
               <p className="text-muted-foreground text-xs md:text-sm">
-                5 minutes. A few questions.
+                5 minutes. Just a few questions to get started.
               </p>
             </Card>
 
-            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group relative md:-mt-4">
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/10 animate-slide-up animate-delay-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/40 hover:scale-[1.02] group relative md:-mt-4">
               <div className="relative mb-6">
                 {/* Optional: Add illustration image here */}
                 <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
@@ -129,11 +129,11 @@ export default function HomePage() {
               </div>
               <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Video Visit</h3>
               <p className="text-muted-foreground text-xs md:text-sm">
-                Meet your provider. Get guidance.
+                Meet your provider from home. Get personalized guidance.
               </p>
             </Card>
 
-            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/30 hover:scale-[1.02] group">
+            <Card className="p-6 md:p-8 text-center border-2 border-border bg-gradient-to-br from-card via-card to-primary/10 animate-slide-up animate-delay-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:border-primary/40 hover:scale-[1.02] group">
               <div className="relative mb-6">
                 {/* Optional: Add illustration image here */}
                 <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 overflow-hidden">
@@ -146,7 +146,7 @@ export default function HomePage() {
               </div>
               <h3 className="font-serif text-xl md:text-2xl font-semibold text-foreground mb-2">Get Prescription</h3>
               <p className="text-muted-foreground text-xs md:text-sm">
-                Sent to pharmacy. Same day.
+                Prescription sent to your pharmacy. Same day delivery.
               </p>
             </Card>
           </div>
@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12 animate-slide-up">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">Why ReproCare</h2>
-            <p className="text-muted-foreground text-sm">Built for your privacy and convenience</p>
+            <p className="text-muted-foreground text-sm">Built for your privacy, convenience, and peace of mind</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
@@ -188,7 +188,7 @@ export default function HomePage() {
               return (
                 <Card
                   key={index}
-                  className={`p-6 border-2 border-border bg-gradient-to-br from-card via-card to-primary/5 animate-slide-up animate-delay-${(index + 1) * 100} transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:scale-[1.02] hover:-translate-y-1`}
+                  className={`p-6 border-2 border-border bg-gradient-to-br from-card via-card to-primary/10 animate-slide-up animate-delay-${(index + 1) * 100} transition-all duration-300 hover:shadow-xl hover:border-primary/40 hover:scale-[1.02] hover:-translate-y-1`}
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-border flex items-center justify-center flex-shrink-0">
@@ -207,16 +207,16 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/20 blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-white/20 blur-3xl" />
+      <section className="py-20 bg-gradient-to-r from-[#480931] to-[#6e7fa6] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/30 blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-white/30 blur-3xl" />
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-2xl mx-auto">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-3">Ready to Start?</h2>
-            <p className="text-lg mb-8 opacity-95">
-              Get your birth control consultation today.
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-3 drop-shadow-lg">Ready to Start?</h2>
+            <p className="text-lg mb-8 opacity-95 drop-shadow-md">
+              Get your birth control consultation today. It's that simple.
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base transition-smooth hover:scale-105 shadow-xl">
               <Link href="/intake">

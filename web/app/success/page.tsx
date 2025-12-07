@@ -40,10 +40,10 @@ export default function SuccessPage() {
               </div>
             </div>
             <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4 animate-slide-up animate-delay-100">
-              All Done!
+              You're All Set!
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto animate-slide-up animate-delay-200">
-              Prescription sent. Confirmation email coming soon.
+              Your prescription has been sent. You'll receive a confirmation email shortly.
             </p>
           </div>
 
@@ -56,9 +56,9 @@ export default function SuccessPage() {
                   <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">1-2 hours</h3>
+                  <h3 className="font-semibold text-foreground mb-1">Within 1-2 Hours</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
-                    Pharmacy processing. You'll get a text when ready.
+                    Your prescription will be processed by the pharmacy. You'll receive a text notification when it's ready for pickup.
                   </p>
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function SuccessPage() {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Pickup or Delivery</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
-                    Pick up at pharmacy or get it delivered in 2-3 days.
+                    Pick up your prescription at your selected pharmacy, or it will be delivered to your address within 2-3 business days.
                   </p>
                 </div>
               </div>
@@ -80,9 +80,9 @@ export default function SuccessPage() {
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Follow-Up</h3>
+                  <h3 className="font-semibold text-foreground mb-1">Follow-Up Care</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm">
-                    We'll remind you about your 3-month check-in.
+                    We'll send you a reminder for your 3-month follow-up consultation. You can schedule anytime through your patient portal.
                   </p>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default function SuccessPage() {
               <div>
                 <h2 className="font-serif text-xl font-semibold text-foreground mb-2">Need Help?</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
-                  Care team available 24/7.
+                  Our care team is available 24/7 to answer any questions about your prescription or consultation.
                 </p>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">

@@ -36,10 +36,10 @@ export default function SummaryPage() {
               <CheckCircle2 className="h-8 w-8 text-primary" />
             </div>
             <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3 animate-slide-up animate-delay-100">
-              Consultation Complete
+              Your Consultation Summary
             </h1>
             <p className="text-muted-foreground leading-relaxed animate-slide-up animate-delay-200">
-              Your visit with Dr. Sarah Mitchell on {visitDate || "Loading..."}
+              Visit with Dr. Sarah Mitchell on {visitDate || "Loading..."}
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export default function SummaryPage() {
           <div className="bg-primary text-primary-foreground rounded-xl p-8 text-center animate-scale-in">
             <h2 className="font-serif text-2xl font-bold mb-3">Next: Choose Your Pharmacy</h2>
             <p className="mb-6 opacity-90 leading-relaxed text-sm">
-              Pick where to send your prescription
+              Select where you'd like to receive your prescription
             </p>
             <Button asChild size="lg" variant="secondary" className="transition-smooth hover:scale-105">
               <Link href="/pharmacy">
